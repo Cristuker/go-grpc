@@ -1,0 +1,24 @@
+syntax = "proto3";
+package pb;
+option go_package = "internal/pb"; // Diz para o protocol buffers criar uma pasta pb dentro de internal
+
+// 1,2,3 é apenas a ordem dos campos.
+message Category {
+    string id = 1;
+    string name = 2;
+    string description = 3;
+}
+
+message CreateCategoryRequest {
+    string name = 1;
+    string description = 2;
+}
+
+message CategoryResponse {
+    Category category = 1;
+}
+
+// Cria um serviço que envia uma category request e retorna uma responsa
+service CategoryService {
+    rpc CreateCategory(CreateCategoryRequest) returns (CategoryResponse);
+}
